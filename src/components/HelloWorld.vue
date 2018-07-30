@@ -33,9 +33,9 @@ export default {
         }],
       },
       style: {
-        height: '100px'
+        height: '150px'
       },
-      dom: "<p>我是P标签</p>"
+      dom: "<p>我是被控制的P标签</p>"
     }
   }
 }
