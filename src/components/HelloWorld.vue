@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 @click="changeBox3('333')" >{{ msg }}</h1>
     <ul>
       <li v-for="item in obj.list">
         <h2 :title="title">{{ item.name }}</h2>
@@ -12,6 +12,18 @@
         </span>
       </li>
     </ul>
+    <div ref="box" >
+      <p>{{ title }}</p>
+      <input type="text" v-model="title" />
+      <button v-on:click="getTitle">获取</button>
+    </div>
+    <div>
+      <button v-on:click="changeBox">变黑</button>
+      <button @click="changeBox2">变白</button>
+      <button @click="changeBox3($event)">事件对象1</button>
+      <button @click="changeBox3">事件对象2</button>
+      <button @click="changeBox3('333')">事件对象3</button>
+    </div>
     <div
       v-html="dom"
       :style="{'line-height': style.height}"
@@ -36,6 +48,22 @@ export default {
         height: '150px'
       },
       dom: "<p>我是被控制的P标签</p>"
+    }
+  },
+  methods: {
+    getTitle() {
+      alert(this.title);
+      this.title = 'name';
+    },
+    changeBox() {
+      this.$refs.box.style.background='black'
+    },
+    changeBox2() {
+      this.$refs.box.style.background='#FFF'
+    },
+    changeBox3(e) {
+      console.log(e);
+      this.$router.push('/todo')
     }
   }
 }
