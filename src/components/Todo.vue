@@ -7,7 +7,7 @@
     <h2>待完成</h2>
     <ul>
       <li v-for="(value, index) in todo" v-if="!value.finished">
-        <input type="checkbox" v-model="value.finished">
+        <input type="checkbox" v-model="value.finished" @change="changeStatus()">
         {{ index + 1 }}---{{ value.txt }}
         <span style="margin-left: 15px" @click="deleteTodo(index)">删除</span>
       </li>
@@ -15,7 +15,7 @@
     <h2>已完成</h2>
     <ul>
       <li v-for="(value, index) in todo" v-if="value.finished">
-        <input type="checkbox" v-model="value.finished">
+        <input type="checkbox" v-model="value.finished" @change="changeStatus()">
         {{ index + 1 }}---{{ value.txt }}
         <span style="margin-left: 15px" @click="deleteTodo(index)">删除</span>
       </li>
@@ -23,6 +23,7 @@
   </div>
 </template>
 <script>
+  import storage from './../utils'
   export default {
     name: 'Todo',
     data () {
@@ -31,23 +32,31 @@
         todo: [],
       }
     },
+    mounted() {
+      var todoList = storage.getStorage('todoList');
+      if(todoList){
+        this.todo = todoList;
+      }
+    },
     methods: {
       add() {
-        console.log('add');
         this.todo.push({
           txt: this.txt,
           finished: false
         })
         this.txt = '';
+        storage.setStorage('todoList', this.todo);
       },
       enterAdd(e) {
-        console.log(e);
         if(e.keyCode === 13){
          this.add();
         }
       },
       deleteTodo(i) {
         this.todo.splice(i, 1)
+      },
+      changeStatus() {
+        storage.setStorage('todoList', this.todo);
       }
     }
   }
