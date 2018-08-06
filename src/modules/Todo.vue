@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-  import storage from './../utils'
+  import storage from '../utils'
   export default {
     name: 'Todo',
     data () {
