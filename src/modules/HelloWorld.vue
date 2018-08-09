@@ -36,7 +36,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Hello World!',
+      msg: 'First',
       title: 'name',
       obj: {
         list: [{
