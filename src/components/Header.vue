@@ -1,13 +1,26 @@
 <template>
-  <h1>I'm header</h1>
+  <div>
+    <h1>{{ txt }}</h1>
+    <button @click="getJson">父传子数据</button>
+    <button @click="HClick">父传子dom</button>
+  </div>
 </template>
 <script>
   export default {
     name: 'Header',
+    // 父传子
+    props: ['txt', 'getJson', 'home'],
     data () {
       return {
-        txt: '',
         todo: [],
+        title: 'son',
+      }
+    },
+    methods: {
+      HClick() {
+        console.log(this.$parent.txt, 1);
+        console.log(this.home.txt, 2);
+        this.getJson();
       }
     },
     beforeCreate() {

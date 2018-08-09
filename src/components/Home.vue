@@ -1,7 +1,9 @@
 <template>
   <div>
-    Im Home
+    <v-header ref="header" :txt="txt" :getJson="getJson" :home="this"/>
+    <p>Im Home</p>
     <button @click="getJson">数据请求</button>
+    <button @click="getSon">子传父</button>
   </div>
 </template>
 <script>
@@ -14,17 +16,24 @@
 
     fetch-jsonp
   */
+  import Header from './Header.vue';
   import request from '../common/request'
   export default {
     name: 'Header',
     data () {
       return {
-        txt: '',
+        txt: 'Hello World!',
         todo: [],
         data: {},
       }
     },
+    components: {
+      'v-header': Header,
+    },
     methods: {
+      getSon() {
+        console.log(this.$refs.header.title, 1);
+      },
       getJson() {
         console.log('JOSN');
         var api = 'http://jsonplaceholder.typicode.com/users';
