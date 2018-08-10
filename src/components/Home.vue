@@ -51,7 +51,7 @@
       }
     },
     mounted() {
-      request('users');
+      // request('users');
     }
   }
 </script>

@@ -23,7 +23,7 @@
       <button @click="changeBox2">变白</button>
       <button @click="router3($event)">事件对象1</button>
       <button @click="router3">事件对象2</button>
-      <button @click="router3('333')">事件对象3</button>
+      <button @click="router3('333')">事件对象3to todo</button>
     </div>
     <div
       v-html="dom"
@@ -65,7 +65,8 @@ export default {
     },
     router3(e) {
       console.log(e);
-      this.$router.push('/todo')
+      // this.$router.push({path: '/todo'});
+       this.$router.push({name: 'Todo'});
     }
   },
   components: {
