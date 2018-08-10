@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h3>Im Content</h3>
+  <div id="content">
+    <h3>{{ news.title }}</h3>
+    <div v-html="news.content"></div>
   </div>
 </template>
 <script >
@@ -9,11 +10,23 @@
     data () {
       return {
         title: 'Content',
+        news: {
+          title: '111'
+        }
       }
     },
     methods: {},
     mounted() {
       console.log(this.$route.params);
+      var api = `http://www.phonegap100.com/appapi.php?a=getPortalArticle&aid=${this.$route.params.aid}`;
+      this.$http.get(api).then(response => {
+        console.log(response.body);
+        // 注意this的指向
+        this.news = response.body.result[0];
+
+      }, error => {
+        console.log(error);
+      });
     }
   }
 </script>

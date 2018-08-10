@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <v-home />
     <h1 @click="changeBox3('333')" >{{ msg }}</h1>
     <ul>
       <li v-for="item in obj.list">
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import Home from '../components/Home.vue';
 export default {
   name: 'HelloWorld',
   data () {
@@ -65,6 +67,9 @@ export default {
       console.log(e);
       this.$router.push('/todo')
     }
+  },
+  components: {
+    'v-home': Home,
   }
 }
 </script>

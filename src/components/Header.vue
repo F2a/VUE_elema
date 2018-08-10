@@ -3,6 +3,10 @@
     <router-link to="/todo?id=12345">
       <h1>{{ txt }}</h1>
     </router-link>
+    <router-link to="/news">
+      <h1>to newsList</h1>
+    </router-link>
+    <button @click="getJson">父传子数据</button>
     <button @click="getJson">父传子数据</button>
     <button @click="HClick">父传子dom(自己)</button>
     <button @click="emitNews">非父子传值广播</button>

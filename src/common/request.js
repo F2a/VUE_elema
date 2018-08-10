@@ -3,7 +3,7 @@
  */
 import axios from 'axios'
 
-var api = 'http://jsonplaceholder.typicode.com/';
+var api = 'http://www.phonegap100.com/';
 function parseJSON(response) {
   console.log(response);
   try {
