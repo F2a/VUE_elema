@@ -20,9 +20,9 @@
     <div>
       <button v-on:click="changeBox">变黑</button>
       <button @click="changeBox2">变白</button>
-      <button @click="changeBox3($event)">事件对象1</button>
-      <button @click="changeBox3">事件对象2</button>
-      <button @click="changeBox3('333')">事件对象3</button>
+      <button @click="router3($event)">事件对象1</button>
+      <button @click="router3">事件对象2</button>
+      <button @click="router3('333')">事件对象3</button>
     </div>
     <div
       v-html="dom"
@@ -61,7 +61,7 @@ export default {
     changeBox2() {
       this.$refs.box.style.background='#FFF'
     },
-    changeBox3(e) {
+    router3(e) {
       console.log(e);
       this.$router.push('/todo')
     }

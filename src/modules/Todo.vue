@@ -33,6 +33,7 @@
       }
     },
     mounted() {
+      console.log(this.$route.query);
       var todoList = storage.getStorage('todoList');
       if(todoList){
         this.todo = todoList;
