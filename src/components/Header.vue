@@ -1,11 +1,17 @@
 <template>
   <div>
-    <h1>{{ txt }}</h1>
+    <router-link to="/todo?id=12345">
+      <h1>{{ txt }}</h1>
+    </router-link>
     <button @click="getJson">父传子数据</button>
-    <button @click="HClick">父传子dom</button>
+    <button @click="HClick">父传子dom(自己)</button>
+    <button @click="emitNews">非父子传值广播</button>
+    <br />
+    <a @click="toContent(title)">router to content</a>
   </div>
 </template>
 <script>
+  import VueEvent from '../common/emit.js'
   export default {
     name: 'Header',
     // 父传子
@@ -13,7 +19,7 @@
     data () {
       return {
         todo: [],
-        title: 'son',
+        title: 'son01Header',
       }
     },
     methods: {
@@ -21,6 +27,12 @@
         console.log(this.$parent.txt, 1);
         console.log(this.home.txt, 2);
         this.getJson();
+      },
+      emitNews(){
+        VueEvent.$emit('news', this.title)
+      },
+      toContent(val){
+        this.$router.push(`/content/${val}`)
       }
     },
     beforeCreate() {

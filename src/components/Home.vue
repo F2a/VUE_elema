@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-header ref="header" :txt="txt" :getJson="getJson" :home="this"/>
-    <p>Im Home</p>
-    <button @click="getJson">数据请求</button>
     <button @click="getSon">子传父</button>
+    <button @click="getJson">数据请求</button>
+    <v-footer />
   </div>
 </template>
 <script>
@@ -17,18 +17,20 @@
     fetch-jsonp
   */
   import Header from './Header.vue';
+  import Footer from './Footer.vue';
   import request from '../common/request'
   export default {
     name: 'Header',
     data () {
       return {
-        txt: 'Hello World!',
+        txt: 'to TODO!',
         todo: [],
         data: {},
       }
     },
     components: {
       'v-header': Header,
+      'v-footer': Footer,
     },
     methods: {
       getSon() {
