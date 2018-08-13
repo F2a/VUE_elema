@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-  import request from '../common/request'
+  import * as request from './service'
   export default {
     name: 'Content',
     data () {
@@ -20,7 +20,9 @@
       }
     },
     methods: {
+      getList (i) {
 
+      }
     },
     mounted() {
       var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
