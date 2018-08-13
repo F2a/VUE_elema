@@ -2,8 +2,20 @@
  * Created by Administrator on 2018/8/6.
  */
 import axios from 'axios'
-
-var api = 'http://www.phonegap100.com/';
+let axiosIns  = axios.create({
+  baseURL: 'http://www.phonegap100.com/',
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+function err(info) {
+  if (info === 'TypeError: Failed to fetch') {
+    const result = { errmsg: '网络未连接，请检查网络设置' };
+    console.log('网络未连接，请检查网络设置');
+    return result;
+  }
+}
 function parseJSON(response) {
   console.log(response);
   try {
@@ -11,21 +23,16 @@ function parseJSON(response) {
 
     }
   } catch (error) {
-    //
+
   }
-  // util.hideToast();
-  // util.spinning = false;
-  return response.json();
+  return response;
 }
-export default function request(url){
-  axios.get(api + url)
-    .then(parseJSON)
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+export default function request(url, option){
+  axiosIns({
+    url,
+    ...option
+  })
+  .then(parseJSON)
+  .catch(err);
 }
 
