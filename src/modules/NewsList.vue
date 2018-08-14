@@ -20,20 +20,24 @@
       }
     },
     methods: {
-      getList (i) {
-
+      async getList () {
+        const { data } = await request.getNewsList();
+        console.log(data);
+        if(data)
+          this.newsList = data.result;
       }
     },
     mounted() {
-      var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
-      this.$http.get(api).then(response => {
-        console.log(response.body);
-        // 注意this的指向
-        this.newsList = response.body.result;
-
-      }, error => {
-        console.log(error);
-      });
+      this.getList();
+//      var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+//      this.$http.get(api).then(response => {
+//        console.log(response.body);
+//        // 注意this的指向
+//        this.newsList = response.body.result;
+//
+//      }, error => {
+//        console.log(error);
+//      });
     },
   }
 </script>
