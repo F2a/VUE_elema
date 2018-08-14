@@ -1,5 +1,6 @@
 <template>
   <div id="content">
+    <router-link to="/news"><h3>上一页</h3></router-link>
     <h3>{{ news.title }}</h3>
     <div v-html="news.content"></div>
   </div>
